@@ -47,7 +47,7 @@ class ApiController extends Controller
 
         $cotacao->save();
          
-        return redirect('/historico')->with('success', 'Vaga adicionada');
+        return redirect('/historico')->with('success', 'Cotação adicionada');
     }
 
     public function consultarCotacao($pais){
@@ -61,15 +61,7 @@ class ApiController extends Controller
             ], 404);
         }
     }
-
-    public function regraDeCompra($valor){
-        if($valor >= 1000 && $valor <= 100000){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
+  
     public function regraDePagamento ($formaDePagamento, $valor){
         switch ($formaDePagamento) {
             //boleto

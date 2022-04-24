@@ -16,7 +16,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="post" action="{{ route('form') }}">
+                    <form method="post" action="{{ route('form') }}" id="form"  onsubmit="validar(); return false;">
                         @csrf
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">MOEDA DE ORIGEM:</label>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-lg-12" style="text-align: right;">
                             <a href="/historico" class="btn btn-warning">HISTÓRICO</a>
-                            <button type="submit" class="btn btn-primary">ENVIAR</button>
+                            <button type="submit" id="botao" class="btn btn-primary">ENVIAR</button>
                         </div>
                     </form>                    
                 </div>
@@ -59,6 +59,22 @@
     </div>
 </div>
 @endsection
+
+<script>
+
+function validar(){
+    var dinheiro = $("#dinheiro").val();
+
+    if(dinheiro <= 1000 || dinheiro >= 100000){
+        alert("O valor deve estar em 1000 e 100000");
+        return false;
+    }else{
+        $('#form').submit();
+    }
+    
+}
+
+</script>
 
 
 

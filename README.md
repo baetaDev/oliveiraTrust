@@ -86,8 +86,11 @@ $ composer install
 
 ## Execute a aplicação em modo de desenvolvimento
 Criar um banco de dados no phpmyadmin chamado laravel.
+
 $ php artisan key:generate
+
 $ php artisan migrate
+
 $ php artisan serve
 
 

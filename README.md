@@ -1,64 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Conversor de Dinheiro Oliveira Trust PHP
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Instruções para o desafio:
+Você vai implementar uma aplicação que faz a conversão da nossa moeda nacional para uma moeda estrangeira, aplicando algumas taxas e regras, não a conversão final do resultado deve ficar em tela de forma detalhada.
+Pode-se usar para conversão de valores, mas aqui recomendamos :: //docs.awesomepi.com.br/api-de-moedas pela facilidade e boa aprovação da API.
 
-## About Laravel
+O Desafio:
+O usuário precisa informar 3 informações em tela, moeda de destino, valor para conversão e forma de pagamento. A nossa moeda nacional BRL será usada como moeda base na conversão.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Como Regras de Negocio:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Moeda de origem BRL;
+Informar uma moeda de compra que não seja BRL (exibir no mínimo 2 opções);
+Valor da Compra em BRL (deve ser maior que R$ 1.000,00 e menor que R$ 100.000,00)
+Formas de pagamento (taxas aplicadas no valor da compra e aceita apenas como opções abaixo)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Para pagamentos em boleto, taxa de 1,45%
+Para pagamentos em cartão de crédito, taxa de 7,63%
 
-## Learning Laravel
+Aplicar taxa de 2% pela conversão para valores abaixo de R$ 3.000,00 e 1% para valores apenas maiores que R$ 3.000,00, essa taxa deve ser aplicada no valor da compra e não sobre o valor já com um taxa de forma de pagamento.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Exemplos de entrada:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Moeda de origem: BRL (padrão)
+Modo de destino:
 
-## Laravel Sponsors
+Exemplos: USD, BTC, ...
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Valor para conversão:
 
-### Premium Partners
+Exemplo: 5.000,00, 1.000,00, 70.000,00, ...
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Forma de pagamento:
 
-## Contributing
+Boleto ou Cartão de Crédito
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Exemplo de funcionamento:
 
-## Code of Conduct
+Parâmetros de entrada:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Moeda de origem: BRL (padrão)
+Moeda de destino: USD
+Valor para conversão: 5.000,00
+Forma de pagamento: Boleto
 
-## Security Vulnerabilities
+Parâmetros de saída:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Modo de origem: BRL
+Moeda de destino: USD
+Valor para conversão: R$ 5.000,00
+Forma de pagamento: Boleto
+Valor da "Moeda de destino" usado para conversão: $ 5,30
+Valor comprador comprado2 "Moeda de destino": $ 9,18 (taxa0 executado no valor de compra2 não valor total de conversão)
+Taxa de pagamento: R$ 72,50
+Taxa de conversão: R$ 50,00
+Valor utilizado para conversão descontando as taxas: R$ 4.877,50
 
-## License
+Critério de aceitação:
+Deve ser possível escolher uma moeda estrangeira entre pelo menos 2 opções sendo o seu valor de compra maior que R$ 1.000 e menor que R$ 100.000,00 e sua forma de pagamento em boleto ou cartão de compra tendo como resultado o valor que será adquirido na moeda de destino e as taxas aplicadas;
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Bônus:
+
+Enviar cotação realizada por e-mail;
+Autenticação de usuário;
+Histórico de cotações feitas pelo usuário;
+Uma opção no painel para configurar como aplicadas na conversão;
+
+# Visão geral
+Conversor de Dinheiro Oliveira Trust PHP.
+
+A API foi construída utilizando o framework Laravel 8.x.
+
+# Requisitos
+Composer
+
+PHP 7.4
+
+Laravel 8.x
+# Instalação
+
+## Clone este repositório
+$ git clone https://github.com/baetaDev/oliveiraTrust.git
+
+## Instale as dependências
+$ composer install
+
+## Execute a aplicação em modo de desenvolvimento
+Criar um banco de dados no phpmyadmin chamado laravel.
+$ php artisan key:generate
+$ php artisan migrate
+$ php artisan serve
+
+

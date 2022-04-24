@@ -93,4 +93,6 @@ $ php artisan migrate
 
 $ php artisan serve
 
+## Link do video
 
+https://www.loom.com/embed/545552482ac0412daebc5eb60bb851f3
